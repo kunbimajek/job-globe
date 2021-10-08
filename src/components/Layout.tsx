@@ -28,7 +28,7 @@ const Layout: FC = ({ children }) => {
             for (let i = 0; i < jobList.length; i++){
                 let currentJob = jobList[i]
                 for (let j  = 0; j < checkedItems.length; j++){
-                    if(currentJob.jobType.toLowerCase() === checkedItems[j]) {  
+                    if(currentJob.location.toLowerCase() === checkedItems[j]) {  
                         arr.push(currentJob)
                         break;
                     }

@@ -7,15 +7,8 @@ export const dropdownOptions = [
 ]
 
 export const locationOptions = [
-    {id: 1, label: 'Kigali, Rwanda', value: 'los'},
-    {id: 2, label: 'Limerick, Ireland', value: 'ghn'},
-    {id: 3, label: 'Porto, Portugal', value: 'prt'},
-    {id: 4, label: 'Vancouver, Canada', value: 'sol'},
-    {id: 5, label: 'San Fransisco, USA', value: 'nhg'},
-    {id: 6, label: 'Porto, Portugal', value: 'trp'},
-    {id: 7, label: 'Lagos, Nigeria', value: 'ols'},
-    {id: 8, label: 'Accra, Ghana', value: 'hng'},
-    {id: 9, label: 'Porto, Portugal', value: 'rtp'}
+    {id: 1, label: 'Mars', value: 'mars'},
+    {id: 2, label: 'Earth', value: 'earth'}
 ]
 
 export const jobTypes: JobType[] = [
@@ -37,7 +30,7 @@ export const jobs: JobsInterface[] = [
         image: '/logo.png', 
         title: 'Freelancer', 
         company: 'Google', 
-        location: 'San Fransisco, USA', 
+        location: 'Mars', 
         summary: 'We are looking for a freelancer to work on a variet of projects for our team in Belruit. MS word is a plus, and so if you are a good freelance please get in touch as we are actively hiring at the momemt. Let us know right away', 
         salaryMin: 5000, 
         salaryMax: 7000, 
@@ -53,7 +46,7 @@ export const jobs: JobsInterface[] = [
         image: '/logo.png', 
         title: 'Bartender', 
         company: 'Amazon', 
-        location: 'Kigali, Rwanda', 
+        location: 'Earth', 
         summary: 'We are looking for a freelancer to work on a variet of projects for our team in Belruit. MS word is a plus, and so if you are a good freelance please get in touch as we are actively hiring at the momemt. Let us know right away', 
         salaryMin: 1000, 
         salaryMax: 2000, 
@@ -69,7 +62,7 @@ export const jobs: JobsInterface[] = [
         image: '/logo.png', 
         title: 'Frontend Developer', 
         company: 'Amazon', 
-        location: 'Limerick, Ireland', 
+        location: 'Earth', 
         summary: 'We are looking for a freelancer to work on a variet of projects for our team in Belruit. MS word is a plus, and so if you are a good freelance please get in touch as we are actively hiring at the momemt. Let us know right away', 
         salaryMin: 10000, 
         salaryMax: 20000, 
@@ -85,7 +78,7 @@ export const jobs: JobsInterface[] = [
         image: '/logo.png', 
         title: 'Nurse', 
         company: 'City Height Hospital', 
-        location: 'Vancouver, Canada', 
+        location: 'Mars', 
         summary: 'We are looking for a freelancer to work on a variet of projects for our team in Belruit. MS word is a plus, and so if you are a good freelance please get in touch as we are actively hiring at the momemt. Let us know right away', 
         salaryMin: 1000, 
         salaryMax: 2000, 
@@ -101,7 +94,7 @@ export const jobs: JobsInterface[] = [
         image: '/logo.png', 
         title: 'Gym Coach', 
         company: 'Fitness Guru', 
-        location: 'Porto, Portugal', 
+        location: 'Earth', 
         summary: 'We are looking for a freelancer to work on a variet of projects for our team in Belruit. MS word is a plus, and so if you are a good freelance please get in touch as we are actively hiring at the momemt. Let us know right away', 
         salaryMin: 80000, 
         salaryMax: 100000, 

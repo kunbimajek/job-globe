@@ -15,33 +15,34 @@ const filters = [
     { 
         id: 'a',
         head: <FilterHead name="Location" />, 
-        body: <FilterSearch name="location" options={locationOptions}/>
+        // body: <FilterSearch name="location" options={locationOptions}/>
+        body: <FilterCheckbox options={locationOptions}/>
     },
     { 
         id: 'b',
         head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Job Type" /></div>, 
         body: <FilterCheckbox options={jobTypes}/>,
     },
-    { 
-        id: 'c',
-        head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Market" /></div>, 
-        body: <FilterSearch name="market"/>
-    },
-    { 
-        id: 'd',
-        head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Skill" /></div>, 
-        body: <FilterSearch name="skill"/>
-    },
+    // { 
+    //     id: 'c',
+    //     head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Market" /></div>, 
+    //     body: <FilterSearch name="market"/>
+    // },
+    // { 
+    //     id: 'd',
+    //     head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Skill" /></div>, 
+    //     body: <FilterSearch name="skill"/>
+    // },
     { 
         id: 'e',
         head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Experience Level" /></div>, 
         body: <FilterCheckbox options={experience}/>
-    },
-    { 
-        id: 'f',
-        head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Salary" /></div>, 
-        body: <FilterSearch name="salary"/>
     }
+    // { 
+    //     id: 'f',
+    //     head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Salary" /></div>, 
+    //     body: <FilterSearch name="salary"/>
+    // }
 ]
 
 const Filter: FC = () => {
