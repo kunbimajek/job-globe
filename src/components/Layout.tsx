@@ -8,6 +8,7 @@ const Layout: FC = ({ children }) => {
     const [jobList, setJobList] = useState<JobsInterface[]>(jobs)
     const [checkedItems, setCheckedItems] = useState([])
     const [search, setSearch] = useState<string>('')
+    const [key, setKey] = useState<string>('')
     const [searchedJob, setSearchedJob] = useState<string>('')
     const [result, setResult] = useState<JobsInterface[]>(jobList)
 
@@ -28,9 +29,21 @@ const Layout: FC = ({ children }) => {
             for (let i = 0; i < jobList.length; i++){
                 let currentJob = jobList[i]
                 for (let j  = 0; j < checkedItems.length; j++){
-                    if(currentJob.location.toLowerCase() === checkedItems[j]) {  
-                        arr.push(currentJob)
-                        break;
+                    if(key === "location") {
+                        if(currentJob.location.toLowerCase() === checkedItems[j]) {  
+                            arr.push(currentJob)
+                            break;
+                        }
+                    } else if(key === "jobType") {
+                        if(currentJob.jobType.toLowerCase() === checkedItems[j]) {  
+                            arr.push(currentJob)
+                            break;
+                        }
+                    } else {
+                        if(currentJob.experience.toLowerCase() === checkedItems[j]) {  
+                            arr.push(currentJob)
+                            break;
+                        }
                     }
                 }
             }
@@ -45,9 +58,11 @@ const Layout: FC = ({ children }) => {
         checkedItems,
         result, 
         search, 
+        key, 
         searchedJob,
         setSearch, 
         setResult,
+        setKey,
         setCheckedItems,
         setSearchedJob,
         handleHeaderSubmit,

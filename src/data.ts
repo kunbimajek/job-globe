@@ -6,22 +6,22 @@ export const dropdownOptions = [
     {id: 3, label: 'Highest Paying', value: 'blue'}
 ]
 
-export const locationOptions = [
-    {id: 1, label: 'Mars', value: 'mars'},
-    {id: 2, label: 'Earth', value: 'earth'}
+export const locationOptions: JobType[] = [
+    {id: 1, label: 'Mars', value: 'mars', key: 'location'},
+    {id: 2, label: 'Earth', value: 'earth', key: 'location'}
 ]
 
 export const jobTypes: JobType[] = [
-    {id: 1, label: 'Full Time', value: 'full time'},
-    {id: 2, label: 'Part Time', value: 'part time'},
-    {id: 3, label: 'Contract', value: 'contract'},
-    {id: 4, label: 'Internship', value: 'internship'}
+    {id: 1, label: 'Full Time', value: 'full time', key: 'jobType'},
+    {id: 2, label: 'Part Time', value: 'part time', key: 'jobType'},
+    {id: 3, label: 'Contract', value: 'contract', key: 'jobType'},
+    {id: 4, label: 'Internship', value: 'internship', key: 'jobType'}
 ]
 
 export const experience: JobType[] = [
-    {id: 1, label: 'Junior', value: 'junior'},
-    {id: 2, label: 'Intermediate', value: 'intermediate'},
-    {id: 3, label: 'Advanced', value: 'advanced'}
+    {id: 1, label: 'Junior', value: 'junior', key: 'experience'},
+    {id: 2, label: 'Intermediate', value: 'intermediate', key: 'experience'},
+    {id: 3, label: 'Advanced', value: 'advanced', key: 'experience'}
 ]
 
 export const jobs: JobsInterface[] = [
