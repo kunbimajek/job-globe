@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap')
+
+// Typography
+$smallfont:         14px
+$basefont:          16px
+$mediumfont:        18px
+$mediumxfont:       20px
+$largefont:         30px
+$largexfont:        50px
+
+$bold:              700
+$medium:            500
+$normal:            400
+$thin:              300
+
+$default-lh:        24px
+$medium-lh:         28px
+$mediumx-lh:        30px
+$large-lh:          45px
+$largex-lh:         75px
+
+$fontstack-default: 'Poppins', sans-serif !important
+
+// Colors
+$primarycolor:      #37C16E
+$secondarycolor:    #3471C8
+$text-black:        #212121
+$text-dark:         #282828
+$text-grey:         #808080
+
+// Media
+$slightradius:      6px
+$mediumradius:      10px
+$heavyradius:       15px
+$borderline:        1px solid #E5E5E5
+$btn-boxshadow:     4px 4px 10px rgba(167, 167, 167, 0.35)
+$boxshadow:         0px 4px 10px rgba(176, 176, 176, 0.15)
+
+// Media Queries
+$mediumup:          "only screen and (min-width: 768px)" 
+$mediumdown:        "only screen and (max-width: 767px)"
+$largeup:           "only screen and (min-width: 993px)"
+$largedown:         "only screen and (max-width: 992px)"
+$slaptop:           "only screen and (max-width: 1024px)"
+$slaptopup:         "only screen and (min-width: 1024px)"
+$xlargeup:          "only screen and (min-width: 1192px)"
+
+// General Styles
+*, *::before, *::after   
+    box-sizing: border-box 
+    font-family: $fontstack-default
+
+html,
+body  
+    padding: 0
+    margin: 0
+    color: $text-dark
+    line-height: $default-lh
+    font-size: $basefont
+    background-color: #fafafa
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+
+h1, h2, h3, h4, h5, h6, p  
+    margin: 0 
+
+h1, h2, h3, h4, h5, h6  
+    color: $text-black
+    font-weight: 600
+
+h1 
+    font-weight: 700 !important
+    font-size: $largexfont
+    line-height: $largex-lh
+
+h2  
+    font-size: $largefont 
+    line-height: $large-lh
+
+h3 
+    font-size: $mediumxfont 
+    line-height: $mediumx-lh
+
+h4 
+    font-size: $mediumfont 
+    line-height: $medium-lh
+
+span
+    font-size: 13px
+
+a, a:hover 
+    text-decoration: none
+    cursor: pointer
+
+a:visited
+     color: inherit
+
+ul
+    margin: 0
+    padding: 0
+    list-style-position: inside
+    li 
+        padding: 5px 0
+        font-size: 15px
+
+input[type="text"], textarea
+    border: 0
+    width: 100%
+    padding: 0 15px
+    border-radius: $slightradius
+    &::placeholder
+        color: #a1a1a1
+
+textarea:focus, input:focus
+    outline: none
+
+.font-14
+    font-size: 14px
+
+.fw-regular  
+    font-weight: $thin !important 
+
+.fw-medium  
+    font-weight: $medium !important 
+
+.fw-bold  
+    font-weight: $bold !important 
+
+.grey
+    color: $text-grey
+
+.green  
+    color: $primarycolor
+
+.black  
+    color: $text-dark
+    &:hover 
+        color: $text-dark !important
+
+.white  
+    color: #ffffff !important
+  
+.text-center  
+    text-align: center 
+
+.text-right  
+    text-align: right
+
+.clear-left  
+    clear: left 
+
+.clear-right  
+    clear: right 
+
+.pos-fixed 
+    position: fixed
+
+.pos-rel 
+    position: relative
+
+.pos-abs 
+    position: absolute
+
+.w-100
+    width: 100%
+
+.op-0
+    opacity: 0 !important
+
+.op-1
+    opacity: 1 !important
+
+.d-block  
+    display: block !important
+
+.d-none  
+    display: none !important
+
+.d-flex  
+    display: flex 
+
+.d-md-flex  
+    @media #{$mediumup}
+        display: flex
+
+.d-lg-flex  
+    @media #{$largeup}
+        display: flex
+     
+.al-i-c  
+    align-items: center 
+
+.jc-c  
+    justify-content: center 
+
+.jc-fe
+    justify-content: flex-end 
+
+.jc-lg-fe
+    justify-content: flex-end 
+    @media #{$largedown}
+        justify-content: center 
+
+.jc-sb  
+    justify-content: space-between 
+
+.bdr-top  
+    border-top: $borderline 
+
+.bdr-bottom  
+    border-bottom: $borderline 
+
+button 
+    outline: none
+    box-shadow: none
+    border: 0
+    cursor: pointer
+
+.m-auto  
+    margin: auto 
+
+.ml-auto  
+    margin-left: auto
+
+.mt-0
+    margin-top: 0 !important
+
+.mr-0
+    margin-right: 0 !important
+
+.mt-5
+    margin-top: 5px !important
+
+.mb-5
+    margin-bottom: 5px !important
+
+.mt-10  
+    margin-top: 10px 
+
+.mb-10
+    margin-bottom: 10px
+
+.mb-1h  
+    margin-bottom: 15px 
+  
+.mt-20  
+    margin-top: 20px 
+
+.mb-20  
+    margin-bottom: 20px 
+  
+.mt-25  
+    margin-top: 25px
+
+.mb-25
+    margin-bottom: 25px 
+
+.mt-30  
+    margin-top: 30px 
+
+.mb-30  
+    margin-bottom: 30px 
+
+.mb-3h
+  margin-bottom: 35px  
+
+.mt-40  
+    margin-top: 40px 
+
+.mb-40  
+    margin-bottom: 40px 
+
+.mb-45
+    margin-bottom: 45px 
+
+.mt-50  
+    margin-top: 50px
+
+.mb-50  
+    margin-bottom: 50px 
+
+.mb-60
+    margin-bottom: 65px 
+
+.mb-70
+    margin-bottom: 70px 
+
+.mb-80
+    margin-bottom: 80px 
+
+.mr-16
+    margin-right: 16px
+
+.pt-20 
+    padding-top: 20px
+
+.pt-30 
+    padding-top: 30px
+
+.pl-5 
+    padding-left: 5px
+
+.pl-20 
+    padding-left: 20px !important
+  
+.py-80  
+    padding: 80px 0 
+
+.py-150  
+    padding: 150px 16px 30px
