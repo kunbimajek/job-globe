@@ -47,9 +47,12 @@ export interface FilterDataInterface {
     jobList: JobsInterface[];
     result: JobsInterface[];
     search: string;
+    checkedItems: string[];
     searchedJob: string;
     setResult: Dispatch<SetStateAction<JobsInterface[]>>;
     setSearch: Dispatch<SetStateAction<string>>;
+    setCheckedItems: Dispatch<SetStateAction<string[]>>;
     setSearchedJob: Dispatch<SetStateAction<string>>;
+    handleFilter: () => void;
     handleHeaderSubmit: (e: any) => void;
 }

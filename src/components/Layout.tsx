@@ -6,7 +6,7 @@ import { JobsContext } from '../contexts/JobsContext'
 
 const Layout: FC = ({ children }) => {
     const [jobList, setJobList] = useState<JobsInterface[]>(jobs)
-    const [checkedItems, setCheckedItems] = useState<string>('')
+    const [checkedItems, setCheckedItems] = useState([])
     const [search, setSearch] = useState<string>('')
     const [searchedJob, setSearchedJob] = useState<string>('')
     const [result, setResult] = useState<JobsInterface[]>(jobList)
@@ -19,23 +19,25 @@ const Layout: FC = ({ children }) => {
         setResult(newJobList)
         setSearchedJob(search)
 
-        console.log(newJobList)
     }
     
    
     const handleFilter = () => {
-        console.log(checkedItems, 'checked items')
-        let arr = []
-        for (let i = 0; i < jobList.length; i++){
-            let currentJob = jobList[i]
-            for (let j  = 0; j < checkedItems.length; j++){
-                if(currentJob.jobType.toLowerCase() === checkedItems[j]) {  
-                    arr.push(currentJob)
-                    break;
+        if(checkedItems.length > 0){
+            let arr = []
+            for (let i = 0; i < jobList.length; i++){
+                let currentJob = jobList[i]
+                for (let j  = 0; j < checkedItems.length; j++){
+                    if(currentJob.jobType.toLowerCase() === checkedItems[j]) {  
+                        arr.push(currentJob)
+                        break;
+                    }
                 }
             }
+            setResult(arr)
+        } else {
+            setResult(jobList)
         }
-        setResult(arr)
     }
        
     const filterData = {
