@@ -6,6 +6,7 @@ import Modal from '../components/Modal'
 import { dropdownOptions as options } from '../data'
 import { CSSTransition } from "react-transition-group"
 import { JobsContext } from '../contexts/JobsContext'
+import { Fade } from "react-awesome-reveal"
 
 const JobList: FC = () => {
     const { result, searchedJob }  = useContext(JobsContext)
@@ -91,7 +92,7 @@ const JobList: FC = () => {
 
     return (
         <div className="job-list">
-            <CSSTransition in={showModal} timeout={300} classNames="slidingModal" unmountOnExit nodeRef={nodeRef}>
+            <CSSTransition in={showModal} timeout={300} classNames="slidingModal" unmountOnExit nodeRef={nodeRef} appear={true}>
                 <Modal
                     ref={nodeRef}
                     showModal={showModal}
@@ -109,7 +110,7 @@ const JobList: FC = () => {
                             <span className="caret"> &#62; </span>
                         </p>
                         <div className={`menu ${open ? 'd-block' : 'd-none'}`}>
-                            {options.map(option => {
+                            { options.map(option => {
                                 if(option.value === selected.value) return null;
                                 return (
                                     <div 
@@ -123,11 +124,13 @@ const JobList: FC = () => {
                     </div>
                 </div>
             </div>
-
-            { result.length > 0 
-                ? renderJobs() 
-                : <h3 className="text-center mt-70">Nothing matches your filter, please try again &#128546;</h3>
-            }
+            
+            <Fade>
+                { result.length > 0 
+                    ? renderJobs() 
+                    : <h3 className="text-center mt-70">Nothing matches your filter, please try again &#128546;</h3>
+                }
+            </Fade>
         </div>
     )
 }

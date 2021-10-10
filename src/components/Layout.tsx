@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { JobsInterface } from '../types'
 import { jobs } from '../data'
 import { JobsContext } from '../contexts/JobsContext'
+import { filterTagProps } from "../types";
 
 const Layout: FC = ({ children }) => {
     const [jobList, setJobList] = useState<JobsInterface[]>(jobs)
@@ -19,10 +20,26 @@ const Layout: FC = ({ children }) => {
     const handleHeaderSubmit = (e: any) => {
         e.preventDefault()
         const newJobList = jobList.filter(job => {
-            return job.title.toLowerCase() === search || job.company.toLowerCase() === search
+            return job.title.toLowerCase() === search.toLowerCase() 
+            || job.company.toLowerCase() === search.toLowerCase()
         })
         setResult(newJobList)
         setSearchedJob(search)
+    }
+
+    const filterTag: filterTagProps = {
+        location: {
+            state: locationCheckedItems,
+            setState: setLocationCheckedItems
+        },
+        jobType: {
+            state: jobTypeCheckedItems,
+            setState: setJobTypeCheckedItems
+        },
+        experience: {
+            state: experienceCheckedItems,
+            setState: setExperienceCheckedItems
+        },
     }
 
     useEffect(() => {
@@ -39,6 +56,7 @@ const Layout: FC = ({ children }) => {
             setJobTypeStateChange(false)
         }
     }, [result, locationStateChange, experienceStateChange, jobTypeStateChange]);
+
    
     const handleLocationFilter = () => {
         if(locationCheckedItems.length > 0){
@@ -118,7 +136,7 @@ const Layout: FC = ({ children }) => {
     }
 
     const handleResultJobTypeFilter = () => {
-        
+
         if(jobTypeCheckedItems.length > 0){
             let arr = []
             for (let i = 0; i < result.length; i++){
@@ -169,7 +187,8 @@ const Layout: FC = ({ children }) => {
         handleHeaderSubmit,
         handleLocationFilter,
         handleJobTypeFilter,
-        handleExperienceFilter
+        handleExperienceFilter,
+        filterTag
     }
 
     return (

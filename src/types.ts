@@ -4,6 +4,7 @@ export interface JobType {
     id?: number;
     label?: string;
     value: string;
+    tag: string
 }
 
 export interface ButtonProps {
@@ -43,25 +44,32 @@ export interface JobsInterface {
     skills: string[];
 }
 
+export interface stateProps {
+    state: string[];
+    setState: Dispatch<SetStateAction<string[]>>;
+}
+
+export interface filterTagProps {
+    [key: string]: stateProps;
+}
+
 export interface FilterDataInterface {
     jobList: JobsInterface[];
     result: JobsInterface[];
     search: string;
-    checkedItems: string[];
     locationCheckedItems: string[];
     jobTypeCheckedItems: string[];
     experienceCheckedItems: string[];
     searchedJob: string;
     setResult: Dispatch<SetStateAction<JobsInterface[]>>;
     setSearch: Dispatch<SetStateAction<string>>;
-    setCheckedItems: Dispatch<SetStateAction<string[]>>;
     setLocationCheckedItems: Dispatch<SetStateAction<string[]>>;
     setJobTypeCheckedItems: Dispatch<SetStateAction<string[]>>;
     setExperienceCheckedItems: Dispatch<SetStateAction<string[]>>;
     setSearchedJob: Dispatch<SetStateAction<string>>;
-    handleFilter: () => void;
     handleLocationFilter: () => void;
     handleJobTypeFilter: () => void;
     handleExperienceFilter: () => void;
     handleHeaderSubmit: (e: any) => void;
+    filterTag: filterTagProps
 }

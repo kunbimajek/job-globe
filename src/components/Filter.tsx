@@ -1,8 +1,6 @@
 import { FC } from 'react'
-import FilterLocationCheckbox from './FilterLocationCheckbox'
-import FilterJobTypeCheckbox from './FilterJobTypeCheckbox'
-import FilterExperienceCheckbox from './FilterExperienceCheckbox'
 import FilterHead from './FilterHead'
+import FilterCheckbox from './FilterCheckbox'
 import { jobTypes, experience, locationOptions } from '../data'
 import {
     Accordion,
@@ -16,12 +14,12 @@ const filters = [
     { 
         id: 'a',
         head: <FilterHead name="Location" />,
-        body: <FilterLocationCheckbox options={locationOptions}/>
+        body: <FilterCheckbox options={locationOptions}/>
     },
     { 
         id: 'b',
         head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Job Type" /></div>, 
-        body: <FilterJobTypeCheckbox options={jobTypes}/>,
+        body: <FilterCheckbox options={jobTypes}/>,
     },
     // { 
     //     id: 'c',
@@ -36,7 +34,7 @@ const filters = [
     { 
         id: 'e',
         head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Experience Level" /></div>, 
-        body: <FilterExperienceCheckbox options={experience}/>
+        body: <FilterCheckbox options={experience}/>
     }
     // { 
     //     id: 'f',

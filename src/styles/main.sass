@@ -65,7 +65,6 @@
     overflow: scroll
     font-size: 15px
 
-
 .filter-section
     position: -webkit-sticky
     position: sticky
@@ -180,6 +179,7 @@
                     font-size: 18px
                     font-weight: 600
             .sort
+                z-index: 100
                 .icon span
                     margin-left: 3px
                 p
@@ -293,11 +293,11 @@
 .slidingModal-enter .modal
     transform: translateX(100%)
 .slidingModal-enter-active .modal
+    transform: translateX(10%)
     transition: transform 200ms
-    transform: translateX(0)
 .slidingModal-exit .modal
     transform: translateX(0)
 .slidingModal-exit-active .modal
-    transition: transform 200ms
+    transition: transform 400ms
     transform: translateX(100%)
 

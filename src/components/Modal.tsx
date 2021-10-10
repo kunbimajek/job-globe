@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, forwardRef } from "react"
 import ReactDOM from 'react-dom'
-import Image from 'next/image'
 import CancelSvg from "./svg/CancelSvg"
 import JobSvg from './svg/JobSvg'
 import LocationSvg from './svg/LocationSvg'
 
-const Modal = (props: any) => {
+const Modal = forwardRef<any, any>((props, ref) => {
     const [isBrowser, setIsBrowser] = useState(false);
   
     useEffect(() => {
@@ -16,7 +15,7 @@ const Modal = (props: any) => {
 
     if(isBrowser) {
         return ReactDOM.createPortal(
-            <div className="modal-wrapper">
+            <div className="modal-wrapper" ref={ref}>
                 <div className="modal">
                     <div 
                         className="mb-20 d-flex al-i-c jc-sb" 
@@ -80,6 +79,8 @@ const Modal = (props: any) => {
             document.getElementById("modal-root") as HTMLElement
         )
     } else return null
-}
+});
+
+Modal.displayName = "Modal";
 
 export default Modal

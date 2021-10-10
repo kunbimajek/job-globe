@@ -1,21 +1,26 @@
-import { useContext, useEffect } from "react";
+import { useContext, useRef, useState } from "react";
 import { FilterCheckboxProps, JobType } from "../types";
-import { JobsContext } from '../contexts/JobsContext'
+import { JobsContext } from '../contexts/JobsContext';
 
-const FilterExperienceCheckbox = ({ options }: FilterCheckboxProps) => {
-    const { experienceCheckedItems, setExperienceCheckedItems , handleExperienceFilter}  = useContext(JobsContext)
+const FilterLocationCheckbox = ({ options }: FilterCheckboxProps) => {
+    const {
+        filterTag,
+        handleLocationFilter
+    }  = useContext(JobsContext)
+
+    const inputRef = useRef<HTMLInputElement>(null)
 
     const handleChecked = async (option: JobType) => {
-        const arr:string[] = experienceCheckedItems
 
+        let tag = filterTag[option.tag]
+
+        const arr:string[] = tag.state
         const valueIndex = await arr.findIndex(element => option.value === element)
-        if (valueIndex === -1) {
-            arr.push(option.value)
-        } else {
-            arr.splice(valueIndex, 1)
-        }
-        setExperienceCheckedItems(arr)
-        handleExperienceFilter()
+        if (valueIndex === -1) arr.push(option.value)
+        else arr.splice(valueIndex, 1)
+        tag.setState(arr);
+            
+        handleLocationFilter()
     }
 
     return (
@@ -24,8 +29,10 @@ const FilterExperienceCheckbox = ({ options }: FilterCheckboxProps) => {
                 <div key={option.id} className="mb-1h"
                 >
                     <input
+                        ref={inputRef}
                         type="checkbox"
                         value={option.value}
+                        className={option.tag}
                         onChange={() => handleChecked(option)}
                     />
                     <label className="pl-5" htmlFor={option.value}>
@@ -37,4 +44,4 @@ const FilterExperienceCheckbox = ({ options }: FilterCheckboxProps) => {
     );
 };
 
-export default FilterExperienceCheckbox;
+export default FilterLocationCheckbox;
