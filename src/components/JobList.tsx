@@ -14,6 +14,7 @@ const JobList: FC = () => {
     const [selected, setSelected] = useState(options[0])
     const [selectedJob, setSelectedJob] = useState(result[0])
 
+    const nodeRef = useRef(null);
     const dropdownRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -37,13 +38,25 @@ const JobList: FC = () => {
         ? <h4>Showing <span>{result.length}</span> results for <span>{searchedJob}</span></h4> 
         : <h4></h4>
 
+
     const renderJobs = () => {
         return result.map(job => {
             return ( 
-                <div className="box brief" key={job.id} onClick={() => { setShowModal(!showModal); setSelectedJob(job) }}>
+                <div 
+                    className="box brief" 
+                    key={job.id} 
+                    onClick={() => { 
+                        setShowModal(!showModal); 
+                        setSelectedJob(job) 
+                    }}>
                     <div className="d-flex jc-sb">
                         <div className="d-flex">
-                            <Image src="/logo.png" alt="logo" width={60} height={60} className="job-logo"/>
+                            <Image 
+                                src="/logo.png" 
+                                alt="logo" 
+                                width={60} 
+                                height={60} 
+                                className="job-logo"/>
                             <div className="title">
                                 <h4>{job.title}<span className="tag">{job.market}</span></h4>
                                 <div className="d-flex al-i-c company-info">
@@ -78,8 +91,9 @@ const JobList: FC = () => {
 
     return (
         <div className="job-list">
-            <CSSTransition in={showModal} timeout={300} classNames="slidingModal" unmountOnExit>
+            <CSSTransition in={showModal} timeout={300} classNames="slidingModal" unmountOnExit nodeRef={nodeRef}>
                 <Modal
+                    ref={nodeRef}
                     showModal={showModal}
                     onDismiss={() => setShowModal(false)} 
                     selectedJob={selectedJob} />
@@ -110,7 +124,10 @@ const JobList: FC = () => {
                 </div>
             </div>
 
-            { renderJobs() }
+            { result.length > 0 
+                ? renderJobs() 
+                : <h3 className="text-center mt-70">Nothing matches your filter, please try again &#128546;</h3>
+            }
         </div>
     )
 }

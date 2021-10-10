@@ -21,7 +21,6 @@ const Layout: FC = ({ children }) => {
 
     }
     
-   
     const handleFilter = () => {
         if(checkedItems.length > 0){
             let arr = []

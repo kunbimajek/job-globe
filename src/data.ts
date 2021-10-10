@@ -6,7 +6,7 @@ export const dropdownOptions = [
     {id: 3, label: 'Highest Paying', value: 'blue'}
 ]
 
-export const locationOptions = [
+export const locationOptions: JobType[] = [
     {id: 1, label: 'Mars', value: 'mars'},
     {id: 2, label: 'Earth', value: 'earth'}
 ]
