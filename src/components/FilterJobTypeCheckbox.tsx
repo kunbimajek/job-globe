@@ -1,0 +1,40 @@
+import { useContext, useEffect } from "react";
+import { FilterCheckboxProps, JobType } from "../types";
+import { JobsContext } from '../contexts/JobsContext'
+
+const FilterJobTypeCheckbox = ({ options }: FilterCheckboxProps) => {
+    const { jobTypeCheckedItems, setJobTypeCheckedItems , handleJobTypeFilter}  = useContext(JobsContext)
+
+    const handleChecked = async (option: JobType) => {
+        const arr:string[] = jobTypeCheckedItems
+
+        const valueIndex = await arr.findIndex(element => option.value === element)
+        if (valueIndex === -1) {
+            arr.push(option.value)
+        } else {
+            arr.splice(valueIndex, 1)
+        }
+        setJobTypeCheckedItems(arr)
+        handleJobTypeFilter()
+    }
+
+    return (
+        <>
+            {options && options.map((option) => (
+                <div key={option.id} className="mb-1h"
+                >
+                    <input
+                        type="checkbox"
+                        value={option.value}
+                        onChange={() => handleChecked(option)}
+                    />
+                    <label className="pl-5" htmlFor={option.value}>
+                        {option.label}
+                    </label>
+                </div>
+            ))}
+        </>
+    );
+};
+
+export default FilterJobTypeCheckbox;

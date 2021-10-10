@@ -69,7 +69,7 @@ export const jobs: JobsInterface[] = [
         market: 'Technology', 
         datePosted: '12th Jun 2021', 
         jobType: 'Full Time',
-        experience: 'Contract',
+        experience: 'Advanced',
         qualifications: ['Bachelor’s degree or equivalent experience', '5+ years software engineering experience', 'Proficient in Python, JavaScript'],
         skills: ['Freelancing', 'Loving', 'Wonderful', 'Caring', 'Smart']
     },

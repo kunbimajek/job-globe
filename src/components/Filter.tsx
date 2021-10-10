@@ -1,7 +1,8 @@
 import { FC } from 'react'
-import FilterCheckbox from './FilterCheckbox'
+import FilterLocationCheckbox from './FilterLocationCheckbox'
+import FilterJobTypeCheckbox from './FilterJobTypeCheckbox'
+import FilterExperienceCheckbox from './FilterExperienceCheckbox'
 import FilterHead from './FilterHead'
-import FilterSearch from './FilterSearch'
 import { jobTypes, experience, locationOptions } from '../data'
 import {
     Accordion,
@@ -14,34 +15,33 @@ import {
 const filters = [
     { 
         id: 'a',
-        head: <FilterHead name="Location" />, 
-        // body: <FilterSearch name="location" options={locationOptions}/>
-        body: <FilterCheckbox options={locationOptions}/>
+        head: <FilterHead name="Location" />,
+        body: <FilterLocationCheckbox options={locationOptions}/>
     },
     { 
         id: 'b',
         head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Job Type" /></div>, 
-        body: <FilterCheckbox options={jobTypes}/>,
+        body: <FilterJobTypeCheckbox options={jobTypes}/>,
     },
     // { 
     //     id: 'c',
     //     head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Market" /></div>, 
-    //     body: <FilterSearch name="market"/>
+    //     body: <FilterLocationCheckbox name="market"/>
     // },
     // { 
     //     id: 'd',
     //     head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Skill" /></div>, 
-    //     body: <FilterSearch name="skill"/>
+    //     body: <FilterLocationCheckbox name="skill"/>
     // },
     { 
         id: 'e',
         head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Experience Level" /></div>, 
-        body: <FilterCheckbox options={experience}/>
+        body: <FilterExperienceCheckbox options={experience}/>
     }
     // { 
     //     id: 'f',
     //     head: <div className="bdr-top pt-30 mt-30"><FilterHead name="Salary" /></div>, 
-    //     body: <FilterSearch name="salary"/>
+    //     body: <FilterLocationCheckbox name="salary"/>
     // }
 ]
 

@@ -6,10 +6,15 @@ import { JobsContext } from '../contexts/JobsContext'
 
 const Layout: FC = ({ children }) => {
     const [jobList, setJobList] = useState<JobsInterface[]>(jobs)
-    const [checkedItems, setCheckedItems] = useState([])
+    const [locationCheckedItems, setLocationCheckedItems] = useState([])
+    const [jobTypeCheckedItems, setJobTypeCheckedItems] = useState([])
+    const [experienceCheckedItems, setExperienceCheckedItems] = useState([])
     const [search, setSearch] = useState<string>('')
     const [searchedJob, setSearchedJob] = useState<string>('')
     const [result, setResult] = useState<JobsInterface[]>(jobList)
+    const [experienceStateChange, setExperienceStateChange] = useState<Boolean>(false)
+    const [locationStateChange, setLocationStateChange] = useState<Boolean>(false)
+    const [jobTypeStateChange, setJobTypeStateChange] = useState<Boolean>(false)
 
     const handleHeaderSubmit = (e: any) => {
         e.preventDefault()
@@ -18,16 +23,30 @@ const Layout: FC = ({ children }) => {
         })
         setResult(newJobList)
         setSearchedJob(search)
-
     }
-    
-    const handleFilter = () => {
-        if(checkedItems.length > 0){
+
+    useEffect(() => {
+        if(locationStateChange) {
+            handleResultLocationFilter()
+            setLocationStateChange(false)
+        }
+        if(experienceStateChange) {
+            handleResultExperienceFilter()
+            setExperienceStateChange(false)
+        }
+        if(jobTypeStateChange) {
+            handleResultJobTypeFilter()
+            setJobTypeStateChange(false)
+        }
+    }, [result, locationStateChange, experienceStateChange, jobTypeStateChange]);
+   
+    const handleLocationFilter = () => {
+        if(locationCheckedItems.length > 0){
             let arr = []
             for (let i = 0; i < jobList.length; i++){
                 let currentJob = jobList[i]
-                for (let j  = 0; j < checkedItems.length; j++){
-                    if(currentJob.location.toLowerCase() === checkedItems[j]) {  
+                for (let j  = 0; j < locationCheckedItems.length; j++){
+                    if(currentJob.location.toLowerCase() === locationCheckedItems[j]) {  
                         arr.push(currentJob)
                         break;
                     }
@@ -37,20 +56,120 @@ const Layout: FC = ({ children }) => {
         } else {
             setResult(jobList)
         }
+        setJobTypeStateChange(true)
+        setExperienceStateChange(true)
+    }
+
+    const handleJobTypeFilter = () => {
+        if(jobTypeCheckedItems.length > 0){
+            let arr = []
+            for (let i = 0; i < jobList.length; i++){
+                let currentJob = jobList[i]
+                for (let j  = 0; j < jobTypeCheckedItems.length; j++){
+                    if(currentJob.jobType.toLowerCase() === jobTypeCheckedItems[j]) {  
+                        arr.push(currentJob)
+                        break;
+                    }
+                }
+            }
+            setResult(arr)
+        } else {
+            setResult(jobList)
+        }
+        setLocationStateChange(true)
+        setExperienceStateChange(true)
+    }
+
+    const handleExperienceFilter = () => {
+        if(experienceCheckedItems.length > 0){
+            let arr = []
+            for (let i = 0; i < jobList.length; i++){
+                let currentJob = jobList[i]
+                for (let j  = 0; j < experienceCheckedItems.length; j++){
+                    if(currentJob.experience.toLowerCase() === experienceCheckedItems[j]) {  
+                        arr.push(currentJob)
+                        break;
+                    }
+                }
+            }
+            setResult(arr)
+        } else {
+            setResult(jobList)
+        }
+        setLocationStateChange(true)
+        setJobTypeStateChange(true)
+    }
+
+    const handleResultLocationFilter = () => {
+        
+        if(locationCheckedItems.length > 0){
+            let arr = []
+            for (let i = 0; i < result.length; i++){
+                let currentJob = result[i]
+                for (let j  = 0; j < locationCheckedItems.length; j++){
+                    if(currentJob.location.toLowerCase() === locationCheckedItems[j]) {  
+                        arr.push(currentJob)
+                        break;
+                    }
+                }
+            }
+            setResult(arr)
+        }
+    }
+
+    const handleResultJobTypeFilter = () => {
+        
+        if(jobTypeCheckedItems.length > 0){
+            let arr = []
+            for (let i = 0; i < result.length; i++){
+                let currentJob = result[i]
+                for (let j  = 0; j < jobTypeCheckedItems.length; j++){
+                    if(currentJob.jobType.toLowerCase() === jobTypeCheckedItems[j]) {  
+                        arr.push(currentJob)
+                        break;
+                    }
+                }
+            }
+            setResult(arr)
+        }
+    }
+
+    const handleResultExperienceFilter = () => {
+        
+        if(experienceCheckedItems.length > 0){
+            let arr = []
+            for (let i = 0; i < result.length; i++){
+                let currentJob = result[i]
+                for (let j  = 0; j < experienceCheckedItems.length; j++){
+                    if(currentJob.experience.toLowerCase() === experienceCheckedItems[j]) {  
+                        arr.push(currentJob)
+                        break;
+                    }
+                }
+            }
+            setResult(arr)
+        }
+        
     }
        
     const filterData = {
         jobList,
-        checkedItems,
+        locationCheckedItems,
+        jobTypeCheckedItems,
+        experienceCheckedItems,
         result, 
-        search, 
+        search,
         searchedJob,
         setSearch, 
         setResult,
-        setCheckedItems,
+        setLocationCheckedItems,
+        setJobTypeCheckedItems,
+        setExperienceCheckedItems,
         setSearchedJob,
         handleHeaderSubmit,
-        handleFilter
+        handleLocationFilter,
+        handleJobTypeFilter,
+        handleExperienceFilter
     }
 
     return (

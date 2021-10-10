@@ -1,21 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FilterCheckboxProps, JobType } from "../types";
 import { JobsContext } from '../contexts/JobsContext'
 
-const FilterCheckbox = ({ options }: FilterCheckboxProps) => {
-    const { checkedItems, setCheckedItems , handleFilter}  = useContext(JobsContext)
+const FilterExperienceCheckbox = ({ options }: FilterCheckboxProps) => {
+    const { experienceCheckedItems, setExperienceCheckedItems , handleExperienceFilter}  = useContext(JobsContext)
 
-    const handleChecked = async (value: string) => {
-        const arr:string[] = checkedItems
+    const handleChecked = async (option: JobType) => {
+        const arr:string[] = experienceCheckedItems
 
-        const valueIndex = await arr.findIndex(element => value === element)
+        const valueIndex = await arr.findIndex(element => option.value === element)
         if (valueIndex === -1) {
-            arr.push(value)
+            arr.push(option.value)
         } else {
             arr.splice(valueIndex, 1)
         }
-        setCheckedItems(arr)
-        handleFilter()
+        setExperienceCheckedItems(arr)
+        handleExperienceFilter()
     }
 
     return (
@@ -26,7 +26,7 @@ const FilterCheckbox = ({ options }: FilterCheckboxProps) => {
                     <input
                         type="checkbox"
                         value={option.value}
-                        onChange={() => handleChecked(option.value)}
+                        onChange={() => handleChecked(option)}
                     />
                     <label className="pl-5" htmlFor={option.value}>
                         {option.label}
@@ -37,4 +37,4 @@ const FilterCheckbox = ({ options }: FilterCheckboxProps) => {
     );
 };
 
-export default FilterCheckbox;
+export default FilterExperienceCheckbox;
