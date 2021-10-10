@@ -1,7 +1,6 @@
 import { FC, useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import InputGroup from './InputGroup'
-import FilterSearch from './FilterSearch'
 
 const Header: FC = () => {
     const [scrolled, setScrolled] = useState(false);

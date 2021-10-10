@@ -2,12 +2,11 @@ import { useContext, useEffect } from "react";
 import { FilterCheckboxProps, JobType } from "../types";
 import { JobsContext } from '../contexts/JobsContext'
 
-const FilterCheckbox = ({ options }: FilterCheckboxProps) => {
-    const { checkedItems, setCheckedItems , handleFilter, setKey}  = useContext(JobsContext)
+const FilterExperienceCheckbox = ({ options }: FilterCheckboxProps) => {
+    const { experienceCheckedItems, setExperienceCheckedItems , handleExperienceFilter}  = useContext(JobsContext)
 
     const handleChecked = async (option: JobType) => {
-        const arr:string[] = checkedItems
-        setKey(option.key)
+        const arr:string[] = experienceCheckedItems
 
         const valueIndex = await arr.findIndex(element => option.value === element)
         if (valueIndex === -1) {
@@ -15,8 +14,8 @@ const FilterCheckbox = ({ options }: FilterCheckboxProps) => {
         } else {
             arr.splice(valueIndex, 1)
         }
-        setCheckedItems(arr)
-        handleFilter()
+        setExperienceCheckedItems(arr)
+        handleExperienceFilter()
     }
 
     return (
@@ -38,4 +37,4 @@ const FilterCheckbox = ({ options }: FilterCheckboxProps) => {
     );
 };
 
-export default FilterCheckbox;
+export default FilterExperienceCheckbox;

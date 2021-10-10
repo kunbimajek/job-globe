@@ -7,21 +7,21 @@ export const dropdownOptions = [
 ]
 
 export const locationOptions: JobType[] = [
-    {id: 1, label: 'Mars', value: 'mars', key: 'location'},
-    {id: 2, label: 'Earth', value: 'earth', key: 'location'}
+    {id: 1, label: 'Mars', value: 'mars'},
+    {id: 2, label: 'Earth', value: 'earth'}
 ]
 
 export const jobTypes: JobType[] = [
-    {id: 1, label: 'Full Time', value: 'full time', key: 'jobType'},
-    {id: 2, label: 'Part Time', value: 'part time', key: 'jobType'},
-    {id: 3, label: 'Contract', value: 'contract', key: 'jobType'},
-    {id: 4, label: 'Internship', value: 'internship', key: 'jobType'}
+    {id: 1, label: 'Full Time', value: 'full time'},
+    {id: 2, label: 'Part Time', value: 'part time'},
+    {id: 3, label: 'Contract', value: 'contract'},
+    {id: 4, label: 'Internship', value: 'internship'}
 ]
 
 export const experience: JobType[] = [
-    {id: 1, label: 'Junior', value: 'junior', key: 'experience'},
-    {id: 2, label: 'Intermediate', value: 'intermediate', key: 'experience'},
-    {id: 3, label: 'Advanced', value: 'advanced', key: 'experience'}
+    {id: 1, label: 'Junior', value: 'junior'},
+    {id: 2, label: 'Intermediate', value: 'intermediate'},
+    {id: 3, label: 'Advanced', value: 'advanced'}
 ]
 
 export const jobs: JobsInterface[] = [
@@ -69,7 +69,7 @@ export const jobs: JobsInterface[] = [
         market: 'Technology', 
         datePosted: '12th Jun 2021', 
         jobType: 'Full Time',
-        experience: 'Contract',
+        experience: 'Advanced',
         qualifications: ['Bachelor’s degree or equivalent experience', '5+ years software engineering experience', 'Proficient in Python, JavaScript'],
         skills: ['Freelancing', 'Loving', 'Wonderful', 'Caring', 'Smart']
     },
