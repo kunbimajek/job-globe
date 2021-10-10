@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { FilterCheckboxProps, JobType } from "../types";
 import { JobsContext } from '../contexts/JobsContext';
 
