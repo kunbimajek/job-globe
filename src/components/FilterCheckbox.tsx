@@ -1,14 +1,15 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FilterCheckboxProps, JobType } from "../types";
 import { JobsContext } from '../contexts/JobsContext';
+import _ from 'lodash'
 
 const FilterLocationCheckbox = ({ options }: FilterCheckboxProps) => {
     const {
+        jobList,
         filterTag,
-        handleLocationFilter
+        setResult,
     }  = useContext(JobsContext)
 
-    const inputRef = useRef<HTMLInputElement>(null)
 
     const handleChecked = async (option: JobType) => {
 
@@ -20,7 +21,33 @@ const FilterLocationCheckbox = ({ options }: FilterCheckboxProps) => {
         else arr.splice(valueIndex, 1)
         tag.setState(arr);
             
-        handleLocationFilter()
+        const handleFilter = () => {
+            if(tag.state.length > 0){
+                let arr = []
+                for (let i = 0; i < jobList.length; i++){
+                    let currentJob = jobList[i]
+                    for (let j  = 0; j < tag.state.length; j++){
+                        if(currentJob[option.tag].toLowerCase() === tag.state[j]) {  
+                            arr.push(currentJob)
+                            break;
+                        }
+                    }
+                }
+                setResult(arr)
+            } else {
+                setResult(jobList)
+            }
+
+            let filteredChanges = _.pickBy(filterTag, (value, key) => {
+                return !_.startsWith(key, option.tag);
+            });
+
+            const stateChange = Object.values(filteredChanges)
+
+            stateChange.forEach(change => change.stateChange(true))
+        }
+
+        handleFilter()
     }
 
     return (
@@ -29,7 +56,6 @@ const FilterLocationCheckbox = ({ options }: FilterCheckboxProps) => {
                 <div key={option.id} className="mb-1h"
                 >
                     <input
-                        ref={inputRef}
                         type="checkbox"
                         value={option.value}
                         className={option.tag}

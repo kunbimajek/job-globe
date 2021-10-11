@@ -28,11 +28,12 @@ export interface FilterCheckboxProps {
 }
 
 export interface JobsInterface {
+    [key: string]: any;
     id: number;
     image: string;
     title: string;
     company: string;
-    location: string;
+    location: string
     summary: string;
     salaryMin: number;
     salaryMax: number;
@@ -46,7 +47,10 @@ export interface JobsInterface {
 
 export interface stateProps {
     state: string[];
+    change: Boolean,
+    tag: string;
     setState: Dispatch<SetStateAction<string[]>>;
+    stateChange: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface filterTagProps {
@@ -57,19 +61,10 @@ export interface FilterDataInterface {
     jobList: JobsInterface[];
     result: JobsInterface[];
     search: string;
-    locationCheckedItems: string[];
-    jobTypeCheckedItems: string[];
-    experienceCheckedItems: string[];
     searchedJob: string;
+    filterTag: filterTagProps
     setResult: Dispatch<SetStateAction<JobsInterface[]>>;
     setSearch: Dispatch<SetStateAction<string>>;
-    setLocationCheckedItems: Dispatch<SetStateAction<string[]>>;
-    setJobTypeCheckedItems: Dispatch<SetStateAction<string[]>>;
-    setExperienceCheckedItems: Dispatch<SetStateAction<string[]>>;
     setSearchedJob: Dispatch<SetStateAction<string>>;
-    handleLocationFilter: () => void;
-    handleJobTypeFilter: () => void;
-    handleExperienceFilter: () => void;
     handleHeaderSubmit: (e: any) => void;
-    filterTag: filterTagProps
 }

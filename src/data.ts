@@ -52,7 +52,7 @@ export const jobs: JobsInterface[] = [
         salaryMax: 2000, 
         market: 'Entertainment', 
         datePosted: '12th Jun 2021', 
-        jobType: 'Full Time',
+        jobType: 'Contract',
         experience: 'Intermediate',
         qualifications: ['Bachelor’s degree or equivalent experience', '5+ years software engineering experience', 'Proficient in Python, JavaScript'],
         skills: ['Freelancing', 'Hardworking', 'Wonderful', 'Innovative', 'Smart']
@@ -68,7 +68,7 @@ export const jobs: JobsInterface[] = [
         salaryMax: 20000, 
         market: 'Technology', 
         datePosted: '12th Jun 2021', 
-        jobType: 'Full Time',
+        jobType: 'Contract',
         experience: 'Advanced',
         qualifications: ['Bachelor’s degree or equivalent experience', '5+ years software engineering experience', 'Proficient in Python, JavaScript'],
         skills: ['Freelancing', 'Hardworking', 'Wonderful', 'Innovative', 'Smart']
@@ -100,7 +100,7 @@ export const jobs: JobsInterface[] = [
         salaryMax: 100000, 
         market: 'Fitness', 
         datePosted: '12th Jun 2021', 
-        jobType: 'Full Time',
+        jobType: 'Internship',
         experience: 'Advanced',
         qualifications: ['Bachelor’s degree or equivalent experience', '5+ years software engineering experience', 'Proficient in Python, JavaScript'],
         skills: ['Freelancing', 'Hardworking', 'Wonderful', 'Innovative', 'Smart']
@@ -180,7 +180,7 @@ export const jobs: JobsInterface[] = [
         salaryMax: 100000, 
         market: 'Household', 
         datePosted: '12th Jun 2021', 
-        jobType: 'Full Time',
+        jobType: 'Contract',
         experience: 'Advanced',
         qualifications: ['Bachelor’s degree or equivalent experience', '5+ years software engineering experience', 'Proficient in Python, JavaScript'],
         skills: ['Freelancing', 'Hardworking', 'Wonderful', 'Innovative', 'Smart']

@@ -1,23 +1,47 @@
 // @ts-nocheck
+
 import { FC, useEffect, useState } from 'react'
 import Head from 'next/head'
-import { JobsInterface } from '../types'
+import { JobsInterface, JobType } from '../types'
 import { jobs } from '../data'
 import { JobsContext } from '../contexts/JobsContext'
 import { filterTagProps } from "../types";
 
 const Layout: FC = ({ children }) => {
     const [jobList, setJobList] = useState<JobsInterface[]>(jobs)
-    const [locationCheckedItems, setLocationCheckedItems] = useState([])
-    const [jobTypeCheckedItems, setJobTypeCheckedItems] = useState([])
-    const [experienceCheckedItems, setExperienceCheckedItems] = useState([])
     const [search, setSearch] = useState<string>('')
     const [searchedJob, setSearchedJob] = useState<string>('')
     const [result, setResult] = useState<JobsInterface[]>(jobList)
+    const [locationCheckedItems, setLocationCheckedItems] = useState([])
+    const [jobTypeCheckedItems, setJobTypeCheckedItems] = useState([])
+    const [experienceCheckedItems, setExperienceCheckedItems] = useState([])
     const [experienceStateChange, setExperienceStateChange] = useState<Boolean>(false)
     const [locationStateChange, setLocationStateChange] = useState<Boolean>(false)
     const [jobTypeStateChange, setJobTypeStateChange] = useState<Boolean>(false)
 
+    const filterTag: filterTagProps = {
+        location: {
+            state: locationCheckedItems,
+            setState: setLocationCheckedItems,
+            change: locationStateChange,
+            stateChange: setLocationStateChange,
+            tag: 'location'
+        },
+        jobType: {
+            state: jobTypeCheckedItems,
+            setState: setJobTypeCheckedItems,
+            change: jobTypeStateChange,
+            stateChange: setJobTypeStateChange,
+            tag: 'jobType'
+        },
+        experience: {
+            state: experienceCheckedItems,
+            setState: setExperienceCheckedItems,
+            change: experienceStateChange,
+            stateChange: setExperienceStateChange,
+            tag: 'experience'
+        },
+    }
     const handleHeaderSubmit = (e: any) => {
         e.preventDefault()
         const newJobList = jobList.filter(job => {
@@ -28,168 +52,44 @@ const Layout: FC = ({ children }) => {
         setSearchedJob(search)
     }
 
-    const filterTag: filterTagProps = {
-        location: {
-            state: locationCheckedItems,
-            setState: setLocationCheckedItems
-        },
-        jobType: {
-            state: jobTypeCheckedItems,
-            setState: setJobTypeCheckedItems
-        },
-        experience: {
-            state: experienceCheckedItems,
-            setState: setExperienceCheckedItems
-        },
-    }
-
     useEffect(() => {
-        if(locationStateChange) {
-            handleResultLocationFilter()
-            setLocationStateChange(false)
-        }
-        if(experienceStateChange) {
-            handleResultExperienceFilter()
-            setExperienceStateChange(false)
-        }
-        if(jobTypeStateChange) {
-            handleResultJobTypeFilter()
-            setJobTypeStateChange(false)
-        }
-    }, [result, locationStateChange, experienceStateChange, jobTypeStateChange]);
+        let changes = Object.values(filterTag)
 
-   
-    const handleLocationFilter = () => {
-        if(locationCheckedItems.length > 0){
-            let arr = []
-            for (let i = 0; i < jobList.length; i++){
-                let currentJob = jobList[i]
-                for (let j  = 0; j < locationCheckedItems.length; j++){
-                    if(currentJob.location.toLowerCase() === locationCheckedItems[j]) {  
-                        arr.push(currentJob)
-                        break;
+        const handleResultFilter = (state, tag) => {
+            if(state.length > 0){
+                let arr = []
+                for (let i = 0; i < result.length; i++){
+                    let currentJob = result[i]
+                    for (let j  = 0; j < state.length; j++){
+                        if(currentJob[tag].toLowerCase() === state[j]) {  
+                            arr.push(currentJob)
+                            break;
+                        }
                     }
                 }
+                setResult(arr)
             }
-            setResult(arr)
-        } else {
-            setResult(jobList)
         }
-        setJobTypeStateChange(true)
-        setExperienceStateChange(true)
-    }
 
-    const handleJobTypeFilter = () => {
-        if(jobTypeCheckedItems.length > 0){
-            let arr = []
-            for (let i = 0; i < jobList.length; i++){
-                let currentJob = jobList[i]
-                for (let j  = 0; j < jobTypeCheckedItems.length; j++){
-                    if(currentJob.jobType.toLowerCase() === jobTypeCheckedItems[j]) {  
-                        arr.push(currentJob)
-                        break;
-                    }
-                }
+        changes.forEach(option => {
+            if(option.change) {
+                handleResultFilter(option.state, option.tag)
+                option.stateChange(false)
             }
-            setResult(arr)
-        } else {
-            setResult(jobList)
-        }
-        setLocationStateChange(true)
-        setExperienceStateChange(true)
-    }
+        })
 
-    const handleExperienceFilter = () => {
-        if(experienceCheckedItems.length > 0){
-            let arr = []
-            for (let i = 0; i < jobList.length; i++){
-                let currentJob = jobList[i]
-                for (let j  = 0; j < experienceCheckedItems.length; j++){
-                    if(currentJob.experience.toLowerCase() === experienceCheckedItems[j]) {  
-                        arr.push(currentJob)
-                        break;
-                    }
-                }
-            }
-            setResult(arr)
-        } else {
-            setResult(jobList)
-        }
-        setLocationStateChange(true)
-        setJobTypeStateChange(true)
-    }
+    }, [result]);
 
-    const handleResultLocationFilter = () => {
-        
-        if(locationCheckedItems.length > 0){
-            let arr = []
-            for (let i = 0; i < result.length; i++){
-                let currentJob = result[i]
-                for (let j  = 0; j < locationCheckedItems.length; j++){
-                    if(currentJob.location.toLowerCase() === locationCheckedItems[j]) {  
-                        arr.push(currentJob)
-                        break;
-                    }
-                }
-            }
-            setResult(arr)
-        }
-    }
-
-    const handleResultJobTypeFilter = () => {
-
-        if(jobTypeCheckedItems.length > 0){
-            let arr = []
-            for (let i = 0; i < result.length; i++){
-                let currentJob = result[i]
-                for (let j  = 0; j < jobTypeCheckedItems.length; j++){
-                    if(currentJob.jobType.toLowerCase() === jobTypeCheckedItems[j]) {  
-                        arr.push(currentJob)
-                        break;
-                    }
-                }
-            }
-            setResult(arr)
-        }
-    }
-
-    const handleResultExperienceFilter = () => {
-        
-        if(experienceCheckedItems.length > 0){
-            let arr = []
-            for (let i = 0; i < result.length; i++){
-                let currentJob = result[i]
-                for (let j  = 0; j < experienceCheckedItems.length; j++){
-                    if(currentJob.experience.toLowerCase() === experienceCheckedItems[j]) {  
-                        arr.push(currentJob)
-                        break;
-                    }
-                }
-            }
-            setResult(arr)
-        }
-        
-    }
-       
     const filterData = {
         jobList,
-        locationCheckedItems,
-        jobTypeCheckedItems,
-        experienceCheckedItems,
         result, 
         search,
         searchedJob,
+        filterTag,
         setSearch, 
         setResult,
-        setLocationCheckedItems,
-        setJobTypeCheckedItems,
-        setExperienceCheckedItems,
         setSearchedJob,
         handleHeaderSubmit,
-        handleLocationFilter,
-        handleJobTypeFilter,
-        handleExperienceFilter,
-        filterTag
     }
 
     return (
